@@ -3,7 +3,7 @@ import SearchBar from '../SearchBar/SearchBar';
 interface Props {}
 const Header = (props: Props) => {
     return (
-        <div>
+        <div className='my-10'>
             <div >
                 <SearchBar></SearchBar>
             </div>
