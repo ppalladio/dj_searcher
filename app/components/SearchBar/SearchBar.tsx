@@ -128,5 +128,4 @@ const SearchBar = (props: Props) => {
         </div>
     );
 };
-
 export default SearchBar;

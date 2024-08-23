@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,3 +9,102 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Dj {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  setIds      String[]  @db.ObjectId
+  sets        DJSet[]   @relation(fields: [setIds], references: [id])
+  playlistIds String[]  @db.ObjectId
+  playlists   Playlist[] @relation(fields: [playlistIds], references: [id])
+}
+
+model DJSet {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  hits       Int
+  source     String
+  image      String?
+  date       DateTime?
+  first_hit  DateTime?
+  djIds      String[]  @db.ObjectId
+  djs        Dj[]      @relation(fields: [djIds], references: [id])
+  playlist   Playlist  @relation(fields: [playlistId], references: [id])
+  playlistId String    @db.ObjectId
+}
+
+model Playlist {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  trackIds    String[]  @db.ObjectId
+  tracks      Track[]   @relation(fields: [trackIds], references: [id])
+  spotify_url String
+  source_url  String?
+  service     String?
+  djIds       String[]  @db.ObjectId
+  djs         Dj[]      @relation(fields: [djIds], references: [id])
+  sets        DJSet[]
+}
+
+model Track {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  album          Album     @relation(fields: [albumId], references: [id])
+  albumId        String    @db.ObjectId
+  artist_display String
+  artistIds      String[]  @db.ObjectId
+  artists        ArtistTrack[] @relation(fields: [artistIds], references: [id])
+  dur            Int
+  himg           Json?
+  hmp3           String?
+  href           String?
+  pop            Int?
+  playlistIds    String[]  @db.ObjectId
+  playlists      Playlist[] @relation(fields: [playlistIds], references: [id])
+}
+
+model Album {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  label        String?
+  release_date String?
+  images       Json?
+  external_urls Json?
+  artistIds    String[]  @db.ObjectId
+  artists      ArtistTrack[] @relation(fields: [artistIds], references: [id])
+  tracks       Track[]
+}
+
+model ArtistTrack {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  trackIds  String[]  @db.ObjectId
+  tracks    Track[]   @relation(fields: [trackIds], references: [id])
+  albumIds  String[]  @db.ObjectId
+  albums    Album[]   @relation(fields: [albumIds], references: [id])
+}
+
+// model User {
+//   id         String  @id @default(auto()) @map("_id") @db.ObjectId
+//   email      String  @unique
+//   password   String
+//   created_at DateTime
+//   updated_at DateTime
+// }
+
+// model Orders {
+//   id   String      @id @default(auto()) @map("_id") @db.ObjectId
+//   created_at DateTime?
+//   data WebhookData?
+// }
+
+// model WebhookData {
+//   id         String    @id @default(auto()) @map("_id") @db.ObjectId
+//   plan_name  String
+//   email      String
+//   action     String
+//   date       String
+//   contact_id String?
+//   planOrder  Orders @relation(fields: [planOrderId], references: [id])
+//   planOrderId String   @unique @db.ObjectId
+// }
