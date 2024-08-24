@@ -1,36 +1,37 @@
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import { cn } from '@/lib/utils';
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
-import { IconArrowWaveRightUp, IconBoxAlignRightFilled, IconBoxAlignTopLeft, IconClipboardCopy, IconFileBroken, IconSignature, IconTableColumn } from '@tabler/icons-react';
-import { Separator } from '@/components/ui/separator';
+import { IconArrowWaveRightUp, IconClipboardCopy, IconFileBroken, IconSignature, IconTableColumn } from '@tabler/icons-react';
+
 export default function Home() {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        return null; // or a loading spinner
+    }
     return (
-        <div className="flex flex-col items-center min-h-screen">
-            <Header></Header>
-            <Separator className="w-[50vw]" />
-            <main className="flex-grow mb-10">
-                <BentoGrid className="max-w-screen mx-auto">
-                    {items.map((item, i) => (
-                        <BentoGridItem
-                            key={i}
-                            title={item.title}
-                            description={item.description}
-                            header={item.header}
-                            icon={item.icon}
-                            link={item.link}
-                            className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
-                          
-                        />
-                    ))}
-                </BentoGrid>
-            </main>
-            <Footer></Footer>
+        <div className="flex-col-center">
+            <BentoGrid className="max-w-screen mx-auto">
+                {items.map((item, i) => (
+                    <BentoGridItem
+                        key={i}
+                        title={item.title}
+                        description={item.description}
+                        header={item.header}
+                        icon={item.icon}
+                        link={item.link}
+                        className={i === 3 || i === 6 ? 'md:col-span-2' : ''}
+                    />
+                ))}
+            </BentoGrid>
         </div>
     );
 }
-const Skeleton = () => <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>;
+const Skeleton = () => <div className="w-full h-full rounded-xl bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-200 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900" />;
 const items = [
     {
         title: 'The Dawn of Innovation',

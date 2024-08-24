@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-interface Y2sSet {}
-const Y2sSetPage = () => {
+interface DJSetsPage {}
+const DJSetsPage = () => {
     const searchParams = useSearchParams();
     const sortField = searchParams.get('sortField');
     console.log(sortField);
-    const [sets, setSets] = useState<Y2sSet[]>([]);
+    const [sets, setSets] = useState<DJSetsPage[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         async function fetchSets() {
@@ -30,6 +30,6 @@ const Y2sSetPage = () => {
 
         fetchSets();
     }, [sortField]);
-    return <div>setpage</div>;
+    return <div>y2s_set_page</div>;
 };
-export default Y2sSetPage;
+export default DJSetsPage;

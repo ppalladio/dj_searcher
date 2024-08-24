@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 interface Props {}
-const Y2SPage = (props: Props) => {
+const DJPage = (props: Props) => {
     const [url, setUrl] = useState('');
 
     const isValidUrl = (url: string): boolean => {
@@ -30,7 +30,7 @@ const Y2SPage = (props: Props) => {
         }
 
         try {
-            const res = await axios.get(`/api/v1/y2s`, { params: { url } });
+            const res = await axios.get(`/api/v1/dj`, { params: { url } });
             console.log(res);
             toast.success('Converted successfully');
         } catch (error) {
@@ -69,4 +69,4 @@ const Y2SPage = (props: Props) => {
         </div>
     );
 };
-export default Y2SPage;
+export default DJPage;
