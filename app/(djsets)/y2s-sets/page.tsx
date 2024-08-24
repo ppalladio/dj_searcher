@@ -1,4 +1,7 @@
 'use client';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -30,6 +33,6 @@ const Y2sSetPage = () => {
 
         fetchSets();
     }, [sortField]);
-    return <div>setpage</div>;
+    return <div>setsjs</div>;
 };
 export default Y2sSetPage;

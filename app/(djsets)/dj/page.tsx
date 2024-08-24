@@ -5,6 +5,9 @@ import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { BsQuestionLg } from 'react-icons/bs';
+
 interface Props {}
 const DJPage = (props: Props) => {
     const [url, setUrl] = useState('');
@@ -43,7 +46,24 @@ const DJPage = (props: Props) => {
         <div className="flex-col-center pt-10">
             <Card className="w-[50vw] ">
                 <CardHeader>
-                    <CardTitle>Convert DJ Set</CardTitle>
+                    <div className="flex-row flex justify-center items-end">
+                        <CardTitle>Convert DJ Set</CardTitle>
+                        <HoverCard>
+                            <HoverCardTrigger>
+                                <BsQuestionLg size={22} className="mx-2" />
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-auto">
+                                How to use it:
+                                <ul className="list-disc pl-5">
+                                    <li>Pick a video from Youtube that contains multiple songs</li>
+                                    <li>Copy the url and paste it in the input form</li>
+                                    <li>Enjoy a music journey exploring the results</li>
+                                    <li>Interact with the album covers to hear a song preview</li>
+                                    <li>Please be patient, the conversion can take up to 60 seconds</li>
+                                </ul>
+                            </HoverCardContent>
+                        </HoverCard>
+                    </div>
                 </CardHeader>
                 <CardContent>
                     <form>
