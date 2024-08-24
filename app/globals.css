@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root,
 body,
 html {
@@ -72,4 +71,11 @@ html {
     body {
         @apply bg-background text-foreground;
     }
+}
+
+.flex-row-center {
+    @apply flex flex-row justify-center items-center;
+}
+.flex-col-center {
+    @apply flex flex-col justify-center items-center;
 }
