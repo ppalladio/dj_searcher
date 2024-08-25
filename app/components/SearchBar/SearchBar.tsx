@@ -53,6 +53,7 @@ const SearchBar = (props: Props) => {
                     <Search className="h-5 w-5 text-muted-foreground" />
                 </div>
                 <Input
+                    data-testId="search-input"
                     type="search"
                     placeholder="Search..."
                     className="w-full rounded-full bg-muted pl-10 pr-24 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"

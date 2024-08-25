@@ -50,7 +50,7 @@ const DJPage = (props: Props) => {
                         <CardTitle>Convert DJ Set</CardTitle>
                         <HoverCard>
                             <HoverCardTrigger>
-                                <BsQuestionLg size={22} className="mx-2" />
+                                <BsQuestionLg size={22} className="mx-2" data-testId="question-icon" />
                             </HoverCardTrigger>
                             <HoverCardContent className="w-auto">
                                 How to use it:
@@ -69,7 +69,7 @@ const DJPage = (props: Props) => {
                     <form>
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
-                                <Input type="url" id="convert" placeholder="Youtube Video URL" value={url} onChange={(e) => setUrl(e.target.value)} />
+                                <Input data-testId="dj-url-input" type="url" id="convert" placeholder="Youtube Video URL" value={url} onChange={(e) => setUrl(e.target.value)} />
                             </div>
                         </div>
                     </form>
@@ -80,10 +80,13 @@ const DJPage = (props: Props) => {
                         onClick={() => {
                             setUrl('');
                         }}
+                        data-testId="dj-clear-button"
                     >
                         Clear
                     </Button>
-                    <Button onClick={() => handleConvert(url)}>Convert</Button>
+                    <Button data-testId="dj-convert-button" onClick={() => handleConvert(url)}>
+                        Convert
+                    </Button>
                 </CardFooter>
             </Card>
         </div>

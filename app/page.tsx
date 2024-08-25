@@ -11,7 +11,7 @@ export default function Home() {
     }, []);
 
     if (!isMounted) {
-        return null; // or a loading spinner
+        return null;
     }
     return (
         <div className="flex-col-center">
