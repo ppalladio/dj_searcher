@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 const Playlist = () => {
-	const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('');
 
     const isValidUrl = (url: string): boolean => {
         try {
@@ -45,16 +45,15 @@ const Playlist = () => {
                     <CardTitle>Analyze DJ Set</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form>
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
-                                <Input type="url" id="analyze" placeholder="Spotify Playlist URL" value={url} onChange={(e) => setUrl(e.target.value)} />
-                            </div>
+                    <div className="grid w-full items-center gap-4">
+                        <div className="flex flex-col space-y-1.5">
+                            <Input data-testid="analyze-input" type="url" id="analyze" placeholder="Spotify Playlist URL" value={url} onChange={(e) => setUrl(e.target.value)} />
                         </div>
-                    </form>
+                    </div>
                 </CardContent>
                 <CardFooter className="flex justify-between">
                     <Button
+                        data-testid="clear-button"
                         variant="outline"
                         onClick={() => {
                             setUrl('');
@@ -62,12 +61,13 @@ const Playlist = () => {
                     >
                         Clear
                     </Button>
-                    <Button onClick={() => handleAnalyze(url)}>Analyze</Button>
+                    <Button data-testid="analyze-button" onClick={() => handleAnalyze(url)}>
+                        Analyze
+                    </Button>
                 </CardFooter>
             </Card>
         </div>
     );
 };
-
 
 export default Playlist;

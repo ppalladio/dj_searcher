@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 import { IconArrowWaveRightUp, IconClipboardCopy, IconFileBroken, IconSignature, IconTableColumn } from '@tabler/icons-react';
+import SearchBar from './components/Search/SearchBar/SearchBar';
 
 export default function Home() {
     const [isMounted, setIsMounted] = useState(false);
@@ -15,6 +16,7 @@ export default function Home() {
     }
     return (
         <div className="flex-col-center">
+            <SearchBar />
             <BentoGrid className="max-w-screen mx-auto">
                 {items.map((item, i) => (
                     <BentoGridItem

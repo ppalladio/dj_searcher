@@ -19,6 +19,9 @@ const MenuBar = (props: Props) => {
                     </MenubarTrigger>
                 </MenubarMenu>
                 <MenubarMenu>
+                    <MenubarTrigger onClick={() => push('/search')}>Search</MenubarTrigger>
+                </MenubarMenu>
+                <MenubarMenu>
                     {/* dj */}
                     <MenubarTrigger>DJ Sets</MenubarTrigger>
                     <MenubarContent>
